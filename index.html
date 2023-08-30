@@ -6,7 +6,7 @@
 <body>
     <h1>Web Request Information</h1>
     <p><strong>URL:</strong> <span id="url"></span></p>
-    <p><strong>URL Parameters:</strong> <span id="params"></span></p>
+    <h2>URL Parameters:</h2> <span id="params"></span>
 
     <script>
         // Function to parse URL parameters
@@ -28,7 +28,11 @@
 
         // Display URL and URL parameters
         document.getElementById('url').textContent = currentURL;
-        document.getElementById('params').textContent = JSON.stringify(queryParams, null, 2);
+        let paramsHTML = ""
+        for([queryParamIndex, queryParamContent] of Object.entries(queryParams)) {
+            paramsHTML += `<p><strong>${queryParamIndex}:</strong> ${queryParamContent}</p>`
+        }
+        document.getElementById('params').innerHTML = paramsHTML
     </script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Request Info</title>
+</head>
+<body>
+    <h1>Web Request Information</h1>
+    <p><strong>URL:</strong> <span id="url"></span></p>
+    <p><strong>URL Parameters:</strong> <span id="params"></span></p>
+
+    <script>
+        // Function to parse URL parameters
+        function parseParams(url) {
+            const params = {};
+            const paramPairs = url.slice(url.indexOf('?') + 1).split('&');
+
+            paramPairs.forEach(pair => {
+                const [key, value] = pair.split('=');
+                params[key] = decodeURIComponent(value);
+            });
+
+            return params;
+        }
+
+        // Get current URL and its parameters
+        const currentURL = window.location.href;
+        const queryParams = parseParams(currentURL);
+
+        // Display URL and URL parameters
+        document.getElementById('url').textContent = currentURL;
+        document.getElementById('params').textContent = JSON.stringify(queryParams, null, 2);
+    </script>
+</body>
+</html>
